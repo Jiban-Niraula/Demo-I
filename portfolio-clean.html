@@ -260,6 +260,43 @@
             padding: 0.5rem;
         }
 
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            z-index: 1000;
+        }
+        
+        .mobile-menu.show {
+            display: block;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s ease;
+        }
+        
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 0 6rem;
@@ -435,6 +472,16 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -451,16 +498,121 @@
             .section {
                 padding: 3rem 0;
             }
+            
+            .section-sm {
+                padding: 2rem 0;
+            }
 
             .hero-actions {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
             }
 
             .btn {
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat {
+                padding: 1.5rem 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .skill-item {
+                padding: 0.75rem;
+            }
+            
+            .hero-avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .hero {
+                padding: 5rem 0 3rem;
+            }
+            
+            .nav-content {
+                padding: 0.75rem 1rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            .skill-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+            
+            .skill-icon {
+                align-self: center;
+            }
+            
+            .portfolio-content {
+                padding: 1.5rem;
+            }
+            
+            .form-input {
+                padding: 0.875rem;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-icon {
+                font-size: 1.75rem;
             }
         }
 
@@ -478,6 +630,56 @@
 
         .animate-fade-in {
             animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Contact Info Styles */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .contact-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow-lg);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+        
+        .contact-link:hover {
+            color: var(--primary-dark);
         }
 
         /* Utilities */
@@ -526,10 +728,19 @@
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#students">Students</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
@@ -976,7 +1187,7 @@
                         <label for="message" class="form-label">Message</label>
                         <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary w-full">
+                    <button type="submit" class="btn btn-primary w-full" style="justify-content: center;">
                         <i class="fas fa-paper-plane"></i>
                         Send Message
                     </button>
@@ -986,27 +1197,27 @@
             </div>
 
             <!-- Contact Info -->
-            <div class="grid grid-3 gap-6 mt-12">
-                <div class="card text-center">
-                    <div class="text-3xl text-primary mb-4">
+            <div class="contact-info-grid mt-12">
+                <div class="contact-card">
+                    <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <h4 class="h4 mb-2">Email</h4>
-                    <p class="text-muted">Contact via form above</p>
+                    <h4 class="contact-title">Email</h4>
+                    <p class="contact-text">Contact via form above</p>
                 </div>
-                <div class="card text-center">
-                    <div class="text-3xl text-primary mb-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <h4 class="h4 mb-2">Location</h4>
-                    <p class="text-muted">Nepal</p>
+                    <h4 class="contact-title">Location</h4>
+                    <p class="contact-text">Nepal</p>
                 </div>
-                <div class="card text-center">
-                    <div class="text-3xl text-primary mb-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
                         <i class="fab fa-facebook"></i>
                     </div>
-                    <h4 class="h4 mb-2">Social</h4>
-                    <a href="https://www.facebook.com/zeewan01" target="_blank" class="text-primary">
+                    <h4 class="contact-title">Social</h4>
+                    <a href="https://www.facebook.com/zeewan01" target="_blank" class="contact-link">
                         Connect on Facebook
                     </a>
                 </div>
@@ -1048,6 +1259,29 @@
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('show');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('show');
+            });
         });
 
         // Scroll Indicator
